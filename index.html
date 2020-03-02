@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compound Interest using Vue</title>
+    <script src="./vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="heading">
+    <h2>compound Interest Calculator Using Vue</h2>
+    <h4>By Obadoba Yunusa</h4>
+    </div>
+    <div id="app" class="main">
+        <div>
+        <label>Initial Principal balance</label>
+        <input class="first" v-model.number="loan.principal" placeholder="Enter Principal" type="number">
+        </div>
+
+        <div>
+        <label>interest rate</label>
+        <input type="number" class="first" placeholder="Enter Rate" v-model.number="loan.rate">
+        </div>
+        
+        <div>
+        <label>number of times interest applied per time period</label>
+        <input type="number" class="first" placeholder="Enter Number" v-model.number="loan.numb">
+        </div>
+
+        <div>
+        <label>time periods elapsed</label>
+        <input class="first" placeholder="Enter Time" type="number" v-model.number="loan.time">
+        </div>
+
+
+        <div>
+            <span style="color: green; text-align: center;">The Compound Interest Rate is ${{result}}</span>
+        </div>
+    </div>
+
+    <script>
+       new Vue({
+           el: '#app',
+           data: {
+               loan: {
+                   principal: '',
+                   rate: '',
+                   time: '',
+                   numb: ''
+               }
+           },
+           computed: {
+               result() {
+                let pr = this.loan.principal;
+                let ra = this.loan.rate;
+                let ti = this.loan.time;
+                let nu = this.loan.numb;
+                return (pr *((1 + (ra / nu))**(nu * ti))).toFixed(2);
+               }
+           }
+                  })
+    </script>
+</body>
+</html>
